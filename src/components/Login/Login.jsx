@@ -1,36 +1,32 @@
 import React, { useState } from 'react';
 import { Container, Form, Button, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
   const navigate = useNavigate();
+  const { login, error } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-
-  const dummyCredentials = {
-    username: 'user123',
-    password: 'password123',
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (username === dummyCredentials.username && password === dummyCredentials.password) {
-      setSuccess(true);
-      setError(null);
+    const isAuthenticated = login(username, password);
+
+    if (isAuthenticated) {
+      setSuccess(true);      
       setTimeout(() => {
         navigate('/home');
       }, 1000);
     } else {
-      setError('Credenciales incorrectas. Intenta de nuevo.');
       setSuccess(false);
     }
   };
 
   return (
-    <Container className="mx-auto mt-5" style={{ maxWidth: '400px' }}>
+    <Container className="mx-auto mt-5">
       <h2>Iniciar Sesión</h2>
       {error && <Alert variant="danger">{error}</Alert>}
       {success && <Alert variant="success">¡Inicio de sesión exitoso!</Alert>}
