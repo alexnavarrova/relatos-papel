@@ -8,7 +8,7 @@ import CheckoutPage from '../pages/CheckoutPage';
 // @ts-ignore
 import LoginPage from '../pages/LoginPage'; 
 // @ts-ignore
-import NotFound from '../pages/NotFound'; // Asegúrate que la ruta sea correcta
+import NotFound from '../pages/NotFound';
 
 const AppRouter = () => (
   <Router>
