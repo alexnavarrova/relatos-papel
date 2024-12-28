@@ -1,6 +1,6 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import AppRouter from './router';
+import AppRouter from './AppRouter/AppRouter';
 import './App.css'
 import './styles/global.css';
 

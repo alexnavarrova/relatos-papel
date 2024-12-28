@@ -1,9 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import HomePage from './pages/HomePage'; 
-import BookPage from './pages/BookPage';
-import CheckoutPage from './pages/CheckoutPage';
-import LoginPage from './pages/LoginPage'; 
-import NotFound from './pages/NotFound'; // Asegúrate que la ruta sea correcta
+// @ts-ignore
+import HomePage from '../pages/HomePage'; 
+// @ts-ignore
+import BookPage from '../pages/BookPage';
+// @ts-ignore
+import CheckoutPage from '../pages/CheckoutPage';
+// @ts-ignore
+import LoginPage from '../pages/LoginPage'; 
+// @ts-ignore
+import NotFound from '../pages/NotFound'; // Asegúrate que la ruta sea correcta
 
 const AppRouter = () => (
   <Router>
