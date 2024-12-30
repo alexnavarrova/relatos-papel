@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Card, Spinner, Col, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Card, Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useCartStore } from '../../store/cartStore';
-import { fetchBookImage } from '../../services/bookService';
 import { FaShoppingCart, FaInfoCircle, FaHeart, FaRegHeart } from 'react-icons/fa';
 import Alert from '../Alert/Alert';
 
 const BookCard = ({ book, showDetailsIcon, children }) => {
   const { addToCart, cart } = useCartStore();
-  const [image, setImage] = useState('');
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [alert, setAlert] = useState({ visible: false, message: '', variant: '' });
   const [showHeart, setShowHeart] = useState(false);
   const [liked, setLiked] = useState(false);
@@ -35,26 +31,6 @@ const BookCard = ({ book, showDetailsIcon, children }) => {
     setLiked(!liked);
   };
 
-  useEffect(() => {
-    const fetchBookDetails = async () => {
-      try {
-        setLoading(true);
-        const coverImage = await fetchBookImage(book.title);
-        setImage(coverImage);
-        setLoading(false);
-      } catch (error) {
-        setError('Error al cargar la imagen del libro ' + error.message);
-        setLoading(false);
-      }
-    };
-
-    fetchBookDetails();
-  }, [book]);
-
-  if (error) {
-    return <div className="alert alert-danger">{error}</div>;
-  }
-
   const quantityInCart = cart.find(item => item.id === book.id)?.quantity || 0;
 
   return (
@@ -65,16 +41,10 @@ const BookCard = ({ book, showDetailsIcon, children }) => {
         !liked && setShowHeart(false);
       }}
     >
-      <Row noGutters>
-        {loading ? (
-          <Col md={4} className="d-flex justify-content-center align-items-center">
-            <Spinner animation="border" />
-          </Col>
-        ) : (
-          <Col md={4}>
-            <Card.Img src={image} alt={book.title} style={{ width: '100%', height: '300px', objectFit: 'cover' }} />
-          </Col>
-        )}
+      <Row>
+        <Col md={4}>
+          <Card.Img src="https://placehold.co/150x200?text=Book+Cover" className="Card__image" alt={book.title} />
+        </Col>
         <Col md={8}>
           <Card.Body className="text-right">
             {showHeart && (

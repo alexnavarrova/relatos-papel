@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchBar from '../SearchBar/SearchBar';
+import NavBar from '../NavBar/NavBar';
 import BookCard from '../BookCard/BookCard';
 import { useSearchStore } from '../../store/searchStore';
 import { books } from '../../services/bookService';
@@ -14,7 +14,7 @@ const BookList = () => {
 
   return (
     <Container className="mx-auto mt-5">
-      <SearchBar showSearchInput={true}  />
+      <NavBar showSearchInput={true}  />
       <div className="d-flex flex-wrap mt-5">
         {filteredBooks.map((book) => (
           <BookCard key={book.id} book={book} showDetailsIcon={true} />

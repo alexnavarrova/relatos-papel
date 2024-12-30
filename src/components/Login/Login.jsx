@@ -57,7 +57,11 @@ const Login = () => {
         </Button>
       </Form>
       <div className="mt-3">
-        <small>Usuario: <strong>user123</strong>, Contraseña: <strong>password123</strong></small>
+        <small>
+          Usuario: <strong>user123</strong>, 
+          Contraseña: <strong>password123</strong>
+        </small>
+        <p>ó espere para ser redireccionado</p>
       </div>
     </Container>
   );

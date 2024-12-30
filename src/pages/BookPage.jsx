@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import SearchBar from '../components/SearchBar/SearchBar';
+import { useParams } from 'react-router-dom';
+import NavBar from '../components/NavBar/NavBar';
 import { books } from '../services/bookService';
-import BookCard from '../components/BookCard/BookCard';
+import BookDetail from '../components/BookDetail/BookDetail';
 import { Container } from 'react-bootstrap';
+
 const BookPage = () => {
   const { id } = useParams();
   const [book, setBook] = useState(null);
@@ -18,13 +19,9 @@ const BookPage = () => {
 
   return (
     <Container className="mx-auto mt-5 w-100">
-      <SearchBar showSearchInput={false} />
+      <NavBar showSearchInput={false} />
         {book && (
-          <BookCard book={book} showDetailsIcon={false}>
-            <Link to="/home" className="btn btn-secondary mt-3">
-              Volver a la página principal
-            </Link>
-          </BookCard>
+          <BookDetail book={book} />
         )}
     </Container>
   );

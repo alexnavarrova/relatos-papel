@@ -1,20 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navbar, Container } from 'react-bootstrap';
 import { useSearchStore } from '../../store/searchStore';
 import { useCartStore } from '../../store/cartStore';
 import { FaSearch, FaShoppingCart } from 'react-icons/fa';
-import Cart from '../Cart/Cart';
 
 import './SearchBar.css';
 
-const SearchBar = ({ showSearchInput = true }) => {
+const SearchBar = ({ showSearchInput, setShowCart }) => {
   const { searchQuery, setSearchQuery } = useSearchStore();
   const { cart } = useCartStore();
   const totalItemsInCart = cart.reduce((total, item) => total + item.quantity, 0);
-  const [showCart, setShowCart] = useState(false);
 
   return (
-    <>
     <Navbar bg="light" fixed="top" className="mb-3">
       <Container className="d-flex justify-content-between align-items-center gap-3">
         {showSearchInput && (
@@ -39,8 +36,6 @@ const SearchBar = ({ showSearchInput = true }) => {
         </div>
       </Container>
     </Navbar>
-    <Cart show={showCart} handleClose={() => setShowCart(false)} />
-    </>
   );
 };
 
